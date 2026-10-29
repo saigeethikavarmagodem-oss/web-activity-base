@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Booking Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        header {
+            background-color: #0077b6;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav {
+            background-color: #023e8a;
+            text-align: center;
+            padding: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            min-height: 350px;
+        }
+
+        .card {
+            background-color: white;
+            display: inline-block;
+            width: 280px;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px gray;
+            vertical-align: top;
+        }
+
+        input, select {
+            padding: 10px;
+            margin: 8px;
+            width: 85%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            margin: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #023e8a;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid gray;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #90e0ef;
+        }
+
+        .seat {
+            width: 60px;
+            padding: 12px 5px;
+            margin: 5px;
+        }
+
+        .available {
+            background-color: #2a9d8f;
+        }
+
+        .selected {
+            background-color: orange;
+        }
+
+        .booked {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        footer {
+            background-color: #023e8a;
+            color: white;
+            text-align: center;
+            padding: 12px;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                margin: 6px;
+            }
+
+            .card {
+                width: 85%;
+            }
+
+            table {
+                width: 100%;
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Travel Booking</h1>
+    <p>Book Your Bus and Train Tickets Easily</p>
+</header>
+
+<nav>
+    <a href="#home" onclick="showPage('home'); return false;">Home</a>
+    <a href="#bus" onclick="showPage('bus'); return false;">Bus Booking</a>
+    <a href="#train" onclick="showPage('train'); return false;">Train Booking</a>
+    <a href="#seats" onclick="showPage('seats'); return false;">Seat Selection</a>
+    <a href="#contact" onclick="showPage('contact'); return false;">Contact</a>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page">
+    <h2>Welcome to Travel Booking</h2>
+    <h3>Plan Your Journey with Us!</h3>
+
+    <div class="card">
+        <h2>🚌 Bus Tickets</h2>
+        <p>Book bus tickets for your favourite destinations.</p>
+        <button onclick="showPage('bus')">Book Bus</button>
+    </div>
+
+    <div class="card">
+        <h2>🚆 Train Tickets</h2>
+        <p>Find train services and check ticket fares.</p>
+        <button onclick="showPage('train')">Book Train</button>
+    </div>
+
+    <p>Easy booking | Comfortable travel | Simple interface</p>
+</div>
+
+<!-- BUS BOOKING PAGE -->
+<div id="bus" class="page">
+    <h2>Bus Ticket Booking</h2>
+
+    <div class="card">
+        <form onsubmit="searchBus(event)">
+            <label>From:</label><br>
+            <input type="text" id="busFrom" placeholder="Source city" required>
+
+            <label>To:</label><br>
+            <input type="text" id="busTo" placeholder="Destination city" required>
+
+            <label>Travel Date:</label><br>
+            <input type="date" id="busDate" required>
+
+            <label>Passengers:</label><br>
+            <input type="number" id="busPassengers" min="1" max="6"
+                   value="1" required>
+
+            <button type="submit">Search Buses</button>
+        </form>
+    </div>
+
+    <div id="busResults"></div>
+</div>
+
+<!-- TRAIN BOOKING PAGE -->
+<div id="train" class="page">
+    <h2>Train Ticket Booking</h2>
+
+    <div class="card">
+        <form onsubmit="searchTrain(event)">
+            <label>From:</label><br>
+            <input type="text" id="trainFrom" placeholder="Source station" required>
+
+            <label>To:</label><br>
+            <input type="text" id="trainTo" placeholder="Destination station" required>
+
+            <label>Travel Date:</label><br>
+            <input type="date" id="trainDate" required>
+
+            <label>Passengers:</label><br>
+            <input type="number" id="trainPassengers" min="1" max="6"
+                   value="1" required>
+
+            <button type="submit">Search Trains</button>
+        </form>
+    </div>
+
+    <div id="trainResults"></div>
+</div>
+
+<!-- SEAT SELECTION PAGE -->
+<div id="seats" class="page">
+    <h2>Select Your Seats</h2>
+    <p>Green = Available | Orange = Selected | Gray = Booked</p>
+
+    <div class="card">
+        <h3>Seat Layout</h3>
+
+        <button type="button" class="seat available" onclick="selectSeat(this, '1A')">1A</button>
+        <button type="button" class="seat booked" disabled>1B</button>
+        <button type="button" class="seat available" onclick="selectSeat(this, '1C')">1C</button>
+        <br>
+
+        <button type="button" class="seat available" onclick="selectSeat(this, '2A')">2A</button>
+        <button type="button" class="seat available" onclick="selectSeat(this, '2B')">2B</button>
+        <button type="button" class="seat booked" disabled>2C</button>
+        <br>
+
+        <button type="button" class="seat available" onclick="selectSeat(this, '3A')">3A</button>
+        <button type="button" class="seat available" onclick="selectSeat(this, '3B')">3B</button>
+        <button type="button" class="seat available" onclick="selectSeat(this, '3C')">3C</button>
+
+        <p id="selectedSeats">Selected Seats: None</p>
+        <p id="seatFare">Total Fare: ₹0</p>
+
+        <button onclick="confirmSeats()">Confirm Seats</button>
+    </div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contact" class="page">
+    <h2>Contact Us</h2>
+
+    <div class="card">
+        <h3>Travel Booking Support</h3>
+        <p>Address: Main Road, Vijayawada</p>
+        <p>Phone: 9876543210</p>
+        <p>Email: travel@example.com</p>
+        <p>Working Hours: 9 AM - 6 PM</p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Travel Booking Website</p>
+</footer>
+
+<script>
+    var selectedSeats = [];
+    var seatPrice = 300;
+
+    function showPage(pageName) {
+        var pages = document.getElementsByClassName("page");
+
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].style.display = "none";
+        }
+
+        document.getElementById(pageName).style.display = "block";
+        window.location.hash = pageName;
+        window.scrollTo(0, 0);
+    }
+
+    function searchBus(event) {
+        event.preventDefault();
+
+        var from = document.getElementById("busFrom").value;
+        var to = document.getElementById("busTo").value;
+        var date = document.getElementById("busDate").value;
+        var passengers = Number(document.getElementById("busPassengers").value);
+
+        if (from.toLowerCase() === to.toLowerCase()) {
+            alert("Source and destination must be different.");
+            return;
+        }
+
+        document.getElementById("busResults").innerHTML =
+            "<h3>Available Bus Services (Sample)</h3>" +
+            "<table><tr><th>Bus</th><th>Departure</th><th>Fare</th><th>Action</th></tr>" +
+            "<tr><td>Express Bus</td><td>9:00 AM</td><td>₹500 per person</td>" +
+            "<td><button onclick=\"bookService('Bus', 'Express Bus', 500, " + passengers + ")\">Select</button></td></tr>" +
+            "<tr><td>City Travels</td><td>6:00 PM</td><td>₹650 per person</td>" +
+            "<td><button onclick=\"bookService('Bus', 'City Travels', 650, " + passengers + ")\">Select</button></td></tr></table>" +
+            "<p>Route: " + from + " to " + to + "</p>" +
+            "<p>Date: " + date + " | Passengers: " + passengers + "</p>";
+    }
+
+    function searchTrain(event) {
+        event.preventDefault();
+
+        var from = document.getElementById("trainFrom").value;
+        var to = document.getElementById("trainTo").value;
+        var date = document.getElementById("trainDate").value;
+        var passengers = Number(document.getElementById("trainPassengers").value);
+
+        if (from.toLowerCase() === to.toLowerCase()) {
+            alert("Source and destination must be different.");
+            return;
+        }
+
+        document.getElementById("trainResults").innerHTML =
+            "<h3>Available Train Services (Sample)</h3>" +
+            "<table><tr><th>Train</th><th>Departure</th><th>Fare</th><th>Action</th></tr>" +
+            "<tr><td>Express Train</td><td>10:00 AM</td><td>₹350 per person</td>" +
+            "<td><button onclick=\"bookService('Train', 'Express Train', 350, " + passengers + ")\">Select</button></td></tr>" +
+            "<tr><td>Superfast Train</td><td>8:00 PM</td><td>₹450 per person</td>" +
+            "<td><button onclick=\"bookService('Train', 'Superfast Train', 450, " + passengers + ")\">Select</button></td></tr></table>" +
+            "<p>Route: " + from + " to " + to + "</p>" +
+            "<p>Date: " + date + " | Passengers: " + passengers + "</p>";
+    }
+
+    function bookService(type, service, fare, passengers) {
+        alert(type + ": " + service +
+              "\nPassengers: " + passengers +
+              "\nTotal Fare: ₹" + (fare * passengers) +
+              "\nThis is a sample booking. No ticket has been purchased.");
+    }
+
+    function selectSeat(button, seat) {
+        if (selectedSeats.includes(seat)) {
+            selectedSeats = selectedSeats.filter(function(item) {
+                return item !== seat;
+            });
+            button.classList.remove("selected");
+            button.classList.add("available");
+        } else {
+            selectedSeats.push(seat);
+            button.classList.remove("available");
+            button.classList.add("selected");
+        }
+
+        document.getElementById("selectedSeats").innerHTML =
+            "Selected Seats: " + selectedSeats.join(", ");
+
+        document.getElementById("seatFare").innerHTML =
+            "Total Fare: ₹" + (selectedSeats.length * seatPrice);
+    }
+
+    function confirmSeats() {
+        if (selectedSeats.length === 0) {
+            alert("Please select at least one seat.");
+        } else {
+            alert("Selected Seats: " + selectedSeats.join(", ") +
+                  "\nTotal Fare: ₹" + (selectedSeats.length * seatPrice) +
+                  "\nThis is a sample selection. No ticket has been booked.");
+        }
+    }
+
+    window.onload = function() {
+        var pageName = window.location.hash.substring(1);
+
+        if (document.getElementById(pageName)) {
+            showPage(pageName);
+        } else {
+            showPage("home");
+        }
+    };
+</script>
+
+</body>
+</html>
