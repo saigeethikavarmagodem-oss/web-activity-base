@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Service Project</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background-color: #f0fff0;
+        }
+
+        header {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: darkgreen;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 8px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        h2 {
+            color: green;
+        }
+
+        .box {
+            background-color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid lightgray;
+            border-radius: 8px;
+        }
+
+        img {
+            width: 200px;
+            height: 130px;
+            margin: 10px;
+        }
+
+        footer {
+            background-color: darkgreen;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        @media(max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Community Service Project</h1>
+    <p>Helping People and Improving Our Community</p>
+</header>
+
+<nav>
+    <a href="#home" onclick="showPage('home')">Home</a>
+    <a href="#objectives" onclick="showPage('objectives')">Objectives</a>
+    <a href="#activities" onclick="showPage('activities')">Activities</a>
+    <a href="#beneficiaries" onclick="showPage('beneficiaries')">Beneficiaries</a>
+    <a href="#gallery" onclick="showPage('gallery')">Gallery</a>
+    <a href="#reports" onclick="showPage('reports')">Reports</a>
+    <a href="#volunteers" onclick="showPage('volunteers')">Volunteers</a>
+    <a href="#timeline" onclick="showPage('timeline')">Timeline</a>
+    <a href="#outcomes" onclick="showPage('outcomes')">Outcomes</a>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+    <h2>Home</h2>
+    <div class="box">
+        <h3>Welcome to Our Project</h3>
+        <p>Our project helps people and improves the local community.</p>
+        <p>We conduct cleanliness drives, tree planting, educational
+        support, and awareness programmes.</p>
+    </div>
+</div>
+
+<!-- OBJECTIVES PAGE -->
+<div id="objectives" class="page">
+    <h2>Project Objectives</h2>
+    <div class="box">
+        <ul>
+            <li>Keep the community clean.</li>
+            <li>Plant trees and protect the environment.</li>
+            <li>Support children's education.</li>
+            <li>Promote health and hygiene.</li>
+            <li>Develop teamwork and leadership.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ACTIVITIES PAGE -->
+<div id="activities" class="page">
+    <h2>Community Activities</h2>
+
+    <div class="box">
+        <h3>1. Cleanliness Drive</h3>
+        <p>Clean public places and promote proper waste disposal.</p>
+    </div>
+
+    <div class="box">
+        <h3>2. Tree Plantation</h3>
+        <p>Plant trees and create environmental awareness.</p>
+    </div>
+
+    <div class="box">
+        <h3>3. Educational Support</h3>
+        <p>Help children with books and learning materials.</p>
+    </div>
+
+    <div class="box">
+        <h3>4. Health Awareness</h3>
+        <p>Explain the importance of personal hygiene and sanitation.</p>
+    </div>
+</div>
+
+<!-- BENEFICIARIES PAGE -->
+<div id="beneficiaries" class="page">
+    <h2>Project Beneficiaries</h2>
+
+    <div class="box">
+        <p><b>Children:</b> Educational support and learning materials.</p>
+        <p><b>Families:</b> Clean surroundings and hygiene awareness.</p>
+        <p><b>Local Residents:</b> Environmental awareness.</p>
+        <p><b>Community:</b> Better cooperation and participation.</p>
+    </div>
+</div>
+
+<!-- GALLERY PAGE -->
+<div id="gallery" class="page">
+    <h2>Project Gallery</h2>
+
+    <div class="box">
+        <p>Community Service Photos</p>
+
+        <img src="https://placehold.co/200x130?text=Cleanliness"
+             alt="Cleanliness activity">
+
+        <img src="https://placehold.co/200x130?text=Tree+Planting"
+             alt="Tree planting">
+
+        <img src="https://placehold.co/200x130?text=Education"
+             alt="Educational support">
+    </div>
+</div>
+
+<!-- WEEKLY REPORTS PAGE -->
+<div id="reports" class="page">
+    <h2>Weekly Reports</h2>
+
+    <div class="box">
+        <h3>Week 1</h3>
+        <p>Visited the community and identified local problems.</p>
+    </div>
+
+    <div class="box">
+        <h3>Week 2</h3>
+        <p>Organised a cleanliness drive.</p>
+    </div>
+
+    <div class="box">
+        <h3>Week 3</h3>
+        <p>Conducted tree plantation activities.</p>
+    </div>
+
+    <div class="box">
+        <h3>Week 4</h3>
+        <p>Provided educational support and awareness.</p>
+    </div>
+</div>
+
+<!-- VOLUNTEERS PAGE -->
+<div id="volunteers" class="page">
+    <h2>Volunteer Details</h2>
+
+    <div class="box">
+        <p><b>Volunteer 1:</b> Team Leader</p>
+        <p><b>Volunteer 2:</b> Activity Coordinator</p>
+        <p><b>Volunteer 3:</b> Environment Coordinator</p>
+        <p><b>Volunteer 4:</b> Report Writer</p>
+        <p><b>Volunteer 5:</b> Photo and Documentation Coordinator</p>
+    </div>
+</div>
+
+<!-- TIMELINE PAGE -->
+<div id="timeline" class="page">
+    <h2>Project Timeline</h2>
+
+    <div class="box">
+        <p><b>Week 1:</b> Community Survey</p>
+        <p><b>Week 2:</b> Cleanliness Drive</p>
+        <p><b>Week 3:</b> Tree Plantation</p>
+        <p><b>Week 4:</b> Educational Support</p>
+        <p><b>Week 5:</b> Health Awareness</p>
+        <p><b>Week 6:</b> Feedback Collection</p>
+        <p><b>Week 7:</b> Project Evaluation</p>
+        <p><b>Week 8:</b> Final Report Preparation</p>
+    </div>
+</div>
+
+<!-- OUTCOMES PAGE -->
+<div id="outcomes" class="page">
+    <h2>Project Outcomes</h2>
+
+    <div class="box">
+        <ul>
+            <li>Improved cleanliness awareness.</li>
+            <li>Increased environmental awareness.</li>
+            <li>Better educational support.</li>
+            <li>Improved teamwork among students.</li>
+            <li>Greater community participation.</li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <p>Community Service Project | 2026</p>
+</footer>
+
+<script>
+    function showPage(pageName) {
+        let pages = document.getElementsByClassName("page");
+
+        for (let i = 0; i < pages.length; i++) {
+            pages[i].style.display = "none";
+        }
+
+        document.getElementById(pageName).style.display = "block";
+
+        window.location.hash = pageName;
+    }
+
+    window.onload = function() {
+        let pageName = window.location.hash.substring(1);
+
+        if (pageName !== "" && document.getElementById(pageName)) {
+            showPage(pageName);
+        } else {
+            showPage("home");
+        }
+    };
+</script>
+
+</body>
+</html>
